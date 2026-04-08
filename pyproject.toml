@@ -1,0 +1,65 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ai-customer-support-dashboard"
+version = "1.0.0"
+description = "AI-powered customer support ticket prioritization and analytics dashboard"
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.8"
+authors = [
+    {name = "AI Support Team"},
+]
+maintainers = [
+    {name = "AI Support Team"},
+]
+keywords = ["machine-learning", "customer-support", "nlp", "streamlit", "dashboard"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "streamlit>=1.28.1",
+    "scikit-learn>=1.3.0",
+    "pandas>=2.0.3",
+    "numpy>=1.24.3",
+    "nltk>=3.8.1",
+    "plotly>=5.15.0",
+    "joblib>=1.3.2",
+]
+
+[project.urls]
+Homepage = "https://github.com/Ay1932/AI-Customer-Support-Dashboard"
+Repository = "https://github.com/Ay1932/AI-Customer-Support-Dashboard"
+Issues = "https://github.com/Ay1932/AI-Customer-Support-Dashboard/issues"
+Changelog = "https://github.com/Ay1932/AI-Customer-Support-Dashboard/blob/main/README.md"
+
+[project.scripts]
+customer-support-dashboard = "app:main"
+
+[tool.setuptools]
+packages = ["."]
+
+[tool.black]
+line-length = 127
+target-version = ['py38']
+
+[tool.isort]
+profile = "black"
+line_length = 127
+
+[tool.flake8]
+max-line-length = 127
+max-complexity = 10
+ignore = ["E203", "W503"]
+exclude = [".git", "__pycache__", "venv", ".venv"]

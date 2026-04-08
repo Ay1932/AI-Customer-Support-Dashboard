@@ -27,9 +27,11 @@ This project implements an AI-powered system for customer support ticket classif
 
 ## Installation
 
+### Option 1: Local Development (Recommended)
+
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone https://github.com/Ay1932/AI-Customer-Support-Dashboard.git
 cd customer-support-dashboard
 ```
 
@@ -46,12 +48,41 @@ source venv/bin/activate  # On macOS/Linux
 pip install -r requirements.txt
 ```
 
+### Option 2: Using Docker
+
+If you have Docker installed, you can run the application in a container:
+
+```bash
+# Build and run with Docker Compose
+docker-compose up --build
+
+# Or build and run manually
+docker build -t customer-support-dashboard .
+docker run -p 8501:8501 customer-support-dashboard
+```
+
+### Option 3: Using Make (Linux/Mac)
+
+If you have `make` installed, you can use the provided Makefile for common tasks:
+
+```bash
+make setup    # Create virtual environment
+make install  # Install dependencies
+make train    # Train models
+make run      # Run dashboard
+make all      # Do everything
+```
+
 ## Quick Start
+
+### For Local Development
 
 1. **Setup Environment**:
 ```bash
 python -m venv venv
 venv\Scripts\activate  # Windows
+# or
+source venv/bin/activate  # Linux/Mac
 pip install -r requirements.txt
 ```
 
@@ -65,6 +96,13 @@ python train_models.py
 ```bash
 streamlit run app.py
 # Or on Windows: double-click run_dashboard.bat
+# Or use Make: make run
+```
+
+### For Docker Users
+
+```bash
+docker-compose up --build
 ```
 
 The dashboard will be available at `http://localhost:8501`
@@ -73,20 +111,36 @@ The dashboard will be available at `http://localhost:8501`
 
 ```
 customer_support_dashboard/
+├── .github/
+│   ├── ISSUE_TEMPLATE/
+│   │   ├── bug_report.md
+│   │   └── feature_request.md
+│   └── workflows/
+│       └── ci.yml                    # GitHub Actions CI pipeline
 ├── data/
-│   └── sample_tickets.csv          # Sample ticket dataset
-├── models/                         # Trained models, preprocessors, and metrics
+│   └── sample_tickets.csv           # Sample ticket dataset
+├── models/                          # Trained models, preprocessors, and metrics
 │   ├── category_model.pkl
 │   ├── priority_model.pkl
 │   ├── tfidf_vectorizer.pkl
 │   ├── category_encoder.pkl
 │   ├── priority_encoder.pkl
 │   └── model_metrics.json
-├── data_preprocessing.py           # Data cleaning and preprocessing
-├── train_models.py                 # Model training script
-├── app.py                          # Streamlit dashboard application
-├── requirements.txt                # Python dependencies
-└── README.md                       # Project documentation
+├── .env.example                     # Environment variables template
+├── .gitignore                       # Git ignore rules
+├── CODE_OF_CONDUCT.md              # Community code of conduct
+├── CONTRIBUTING.md                 # Contribution guidelines
+├── Dockerfile                       # Docker container configuration
+├── LICENSE                          # MIT license
+├── Makefile                         # Development automation tasks
+├── README.md                        # Project documentation
+├── app.py                           # Streamlit dashboard application
+├── data_preprocessing.py            # Data cleaning and preprocessing
+├── docker-compose.yml              # Docker Compose configuration
+├── pyproject.toml                   # Modern Python packaging
+├── requirements.txt                 # Python dependencies
+├── run_dashboard.bat               # Windows batch script to run dashboard
+└── setup.py                         # Traditional Python packaging
 ```
 
 ## Data Processing Pipeline
