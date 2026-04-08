@@ -1,0 +1,56 @@
+Ticket ID,Ticket Type,Subject,Description,Priority,Status,Created Date,Resolved Date
+1,Technical Issue,Login problem,I can't log into my account. Error message says invalid credentials.,High,Resolved,2023-01-01,2023-01-02
+2,Billing,Incorrect charge,My bill shows a charge I don't recognize for $50.,Medium,Resolved,2023-01-02,2023-01-03
+3,Account Problem,Password reset,I forgot my password and need to reset it.,Low,Resolved,2023-01-03,2023-01-03
+4,Delivery Issue,Package not delivered,My package was supposed to arrive yesterday but it's not here.,High,Open,2023-01-04,
+5,Technical Issue,App crashes,The app keeps crashing when I try to upload a file.,Medium,Resolved,2023-01-05,2023-01-06
+6,Billing,Refund request,I want a refund for the faulty product I received.,High,Open,2023-01-06,
+7,Account Problem,Email change,I need to change my email address associated with the account.,Low,Resolved,2023-01-07,2023-01-07
+8,Delivery Issue,Late delivery,My order is delayed by 3 days.,Medium,Resolved,2023-01-08,2023-01-09
+9,Technical Issue,Slow performance,The website is very slow to load.,Low,Resolved,2023-01-09,2023-01-10
+10,Billing,Payment failed,My payment didn't go through and I got an error.,Medium,Open,2023-01-10,
+11,Technical Issue,Database connection error,Getting database connection errors when trying to access my dashboard.,High,Resolved,2023-01-11,2023-01-12
+12,Account Problem,Two-factor authentication issue,I can't receive SMS codes for 2FA.,High,Open,2023-01-12,
+13,Billing,Double charge,I was charged twice for my subscription.,High,Resolved,2023-01-13,2023-01-14
+14,Delivery Issue,Wrong item shipped,I received the wrong product in my shipment.,Medium,Resolved,2023-01-14,2023-01-15
+15,Technical Issue,API integration broken,The third-party API integration is not working anymore.,High,Resolved,2023-01-15,2023-01-16
+16,Account Problem,Account locked,My account has been locked for suspicious activity.,High,Resolved,2023-01-16,2023-01-17
+17,Billing,Subscription cancellation,I want to cancel my subscription and get a refund.,Medium,Open,2023-01-17,
+18,Delivery Issue,Damaged package,The package arrived but items are damaged.,High,Open,2023-01-18,
+19,Technical Issue,Mobile app not syncing,Data is not syncing between my mobile app and desktop.,Medium,Resolved,2023-01-19,2023-01-20
+20,Account Problem,Profile picture upload failing,Unable to upload a new profile picture.,Low,Resolved,2023-01-20,2023-01-20
+21,Billing,Invoice not received,I haven't received my latest invoice.,Low,Resolved,2023-01-21,2023-01-22
+22,Delivery Issue,Lost package,My package shows delivered but I never received it.,High,Open,2023-01-22,
+23,Technical Issue,Search function broken,The search feature is not returning any results.,Medium,Resolved,2023-01-23,2023-01-24
+24,Account Problem,Username change,Can I change my username to something else?,Low,Resolved,2023-01-24,2023-01-25
+25,Billing,Discount code not working,The promo code isn't being applied to my order.,Medium,Open,2023-01-25,
+26,Delivery Issue,Delivery address issue,I need to change the delivery address for my order.,Medium,Resolved,2023-01-26,2023-01-26
+27,Technical Issue,Export data failing,Getting an error when trying to export my data as CSV.,Medium,Resolved,2023-01-27,2023-01-28
+28,Account Problem,Session timeout too short,The session timeout is too short and keeps logging me out.,Low,Open,2023-01-28,
+29,Billing,VAT charge incorrect,The VAT calculation on my invoice appears to be wrong.,Medium,Resolved,2023-01-29,2023-01-30
+30,Delivery Issue,Customs hold,My international package is held in customs.,High,Open,2023-01-30,
+31,Technical Issue,Memory leak in app,The app is consuming too much memory and crashing.,High,Resolved,2023-01-31,2023-02-02
+32,Account Problem,Privacy settings confusing,I'm unable to find and adjust my privacy settings.,Low,Resolved,2023-02-01,2023-02-02
+33,Billing,Missing transaction,A payment I made is not showing in my account history.,High,Open,2023-02-02,
+34,Delivery Issue,Tracking info outdated,The tracking information hasn't updated in 2 days.,Medium,Resolved,2023-02-03,2023-02-04
+35,Technical Issue,File upload limit,I can't upload files larger than 1MB even though allowed.,Medium,Open,2023-02-04,
+36,Account Problem,Verify email not sent,Didn't receive the email verification link.,Medium,Resolved,2023-02-05,2023-02-05
+37,Billing,Billing address mismatch,The billing address doesn't match my credit card.,Low,Resolved,2023-02-06,2023-02-07
+38,Delivery Issue,No signature option,I need someone to be present for delivery.,Medium,Open,2023-02-07,
+39,Technical Issue,Certificate expired,Seeing SSL certificate warning on the website.,High,Resolved,2023-02-08,2023-02-08
+40,Account Problem,Data export not working,Unable to download my personal data export.,Medium,Resolved,2023-02-09,2023-02-09
+41,Billing,Recurring charge issue,Was accidentally charged after cancelling subscription.,High,Open,2023-02-10,
+42,Delivery Issue,Partial shipment,Only received half of my order.,High,Resolved,2023-02-11,2023-02-13
+43,Technical Issue,Feature request - dark mode,Would love to see a dark mode option.,Low,Open,2023-02-12,
+44,Account Problem,Cannot delete account,The delete account option is not available.,Medium,Open,2023-02-13,
+45,Billing,Tax exemption certificate,Need to upload a tax exemption certificate.,Low,Resolved,2023-02-14,2023-02-15
+46,Delivery Issue,Insurance claim,Need to file an insurance claim for lost package.,High,Open,2023-02-15,
+47,Technical Issue,Notifications not working,Push notifications aren't being received.,Medium,Resolved,2023-02-16,2023-02-17
+48,Account Problem,Support ticket history,Cannot view my past support tickets.,Low,Resolved,2023-02-17,2023-02-18
+49,Billing,Annual billing option,Interested in annual billing instead of monthly.,Low,Open,2023-02-18,
+50,Delivery Issue,Hazmat shipping,My package contains hazardous materials.,High,Resolved,2023-02-19,2023-02-21
+51,Technical Issue,Rate limiting exceeded,Hitting API rate limits too frequently.,High,Open,2023-02-20,
+52,Account Problem,Linked account issue,Cannot link my social media account.,Medium,Resolved,2023-02-21,2023-02-22
+53,Billing,Credit card declined,My credit card keeps getting declined for transactions.,High,Resolved,2023-02-22,2023-02-23
+54,Delivery Issue,Weekend delivery,Need delivery on a weekend or holiday.,Low,Open,2023-02-23,
+55,Technical Issue,Webhook not triggering,Webhooks are not being sent to my endpoint.,High,Open,2023-02-24,
