@@ -99,6 +99,29 @@ streamlit run app.py
 # Or use Make: make run
 ```
 
+### For Advanced Features
+
+**Train Advanced Models with Hyperparameter Tuning**:
+```bash
+make train-advanced
+# or
+python advanced_training.py
+```
+
+**Run Model Explainability Analysis**:
+```bash
+make explain
+# or
+python explainability.py
+```
+
+**Run REST API**:
+```bash
+make run-api
+# or
+uvicorn api:app --reload
+```
+
 ### For Docker Users
 
 ```bash
@@ -125,7 +148,13 @@ customer_support_dashboard/
 │   ├── tfidf_vectorizer.pkl
 │   ├── category_encoder.pkl
 │   ├── priority_encoder.pkl
-│   └── model_metrics.json
+│   ├── model_metrics.json
+│   ├── advanced_*.pkl              # Advanced models (optional)
+│   ├── explanations_demo.json      # Model explanations
+│   └── monitoring_history.json     # Performance monitoring
+├── tests/                           # Unit and integration tests
+│   ├── __init__.py
+│   └── test_main.py
 ├── .env.example                     # Environment variables template
 ├── .gitignore                       # Git ignore rules
 ├── CODE_OF_CONDUCT.md              # Community code of conduct
@@ -134,9 +163,12 @@ customer_support_dashboard/
 ├── LICENSE                          # MIT license
 ├── Makefile                         # Development automation tasks
 ├── README.md                        # Project documentation
+├── advanced_training.py             # Advanced model training with tuning
+├── api.py                           # FastAPI REST API
 ├── app.py                           # Streamlit dashboard application
 ├── data_preprocessing.py            # Data cleaning and preprocessing
 ├── docker-compose.yml              # Docker Compose configuration
+├── explainability.py                # Model explainability and monitoring
 ├── pyproject.toml                   # Modern Python packaging
 ├── requirements.txt                 # Python dependencies
 ├── run_dashboard.bat               # Windows batch script to run dashboard
@@ -181,15 +213,63 @@ The models are evaluated using:
 - Precision, Recall, F1-score
 - Classification reports
 
-## Future Enhancements
+## Advanced Features
 
-- Integration with real ticketing systems (Jira, Zendesk)
-- Real-time model retraining using an updated ticket stream
-- Advanced NLP techniques (BERT, transformers, or fastText)
-- Multi-language support for non-English tickets
-- Automated response suggestion and ticket routing
-- Add a business impact dashboard for SLA breaches and backlog risk
-- Add explainability (SHAP/LIME) for why a ticket was prioritized high
+### 🤖 **Advanced Model Training**
+- **Hyperparameter Tuning**: Grid search optimization for all models
+- **Model Comparison**: Compare Random Forest, SVM, Gradient Boosting, Logistic Regression, and Naive Bayes
+- **Ensemble Methods**: Voting classifiers combining multiple models
+- **Cross-Validation**: Robust evaluation with k-fold cross-validation
+
+```bash
+python advanced_training.py
+```
+
+### 🔍 **Model Explainability**
+- **SHAP Integration**: Understand feature importance and prediction explanations
+- **LIME Integration**: Local interpretable model-agnostic explanations
+- **Prediction Confidence**: Confidence scores for all predictions
+- **Feature Analysis**: Identify which words/phrases influence predictions
+
+```bash
+python explainability.py
+```
+
+### 🌐 **REST API**
+- **FastAPI Backend**: Production-ready REST API
+- **Interactive Documentation**: Auto-generated API docs at `/docs`
+- **Prediction Endpoints**: Programmatic access to model predictions
+- **Health Monitoring**: API health checks and model status
+
+```bash
+uvicorn api:app --reload --host 0.0.0.0 --port 8000
+# API docs available at: http://localhost:8000/docs
+```
+
+### 📊 **Model Monitoring**
+- **Performance Tracking**: Monitor model accuracy over time
+- **Drift Detection**: Identify when model performance degrades
+- **Automated Evaluation**: Regular model assessment on new data
+- **Historical Analysis**: Track performance trends and metrics
+
+### 🧪 **Comprehensive Testing**
+- **Unit Tests**: Test all core functions and classes
+- **Integration Tests**: Test model loading and prediction pipelines
+- **Code Coverage**: Track test coverage with pytest-cov
+- **CI/CD Integration**: Automated testing on every commit
+
+```bash
+pytest --cov=. --cov-report=html
+```
+
+### 🐳 **Containerization**
+- **Docker Support**: Run anywhere with Docker
+- **Docker Compose**: Easy multi-container deployment
+- **Production Ready**: Optimized for deployment
+
+```bash
+docker-compose up --build
+```
 
 ## Contributing
 

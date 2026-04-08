@@ -46,20 +46,41 @@ Changelog = "https://github.com/Ay1932/AI-Customer-Support-Dashboard/blob/main/R
 
 [project.scripts]
 customer-support-dashboard = "app:main"
+customer-support-api = "api:app"
 
 [tool.setuptools]
 packages = ["."]
 
-[tool.black]
-line-length = 127
-target-version = ['py38']
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q --cov=src --cov-report=html --cov-report=term-missing"
+testpaths = [
+    "tests",
+]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
 
-[tool.isort]
-profile = "black"
-line_length = 127
+[tool.coverage.run]
+source = ["."]
+omit = [
+    "tests/*",
+    "venv/*",
+    "*/venv/*",
+    "*/__pycache__/*",
+    "__pycache__/*",
+]
 
-[tool.flake8]
-max-line-length = 127
-max-complexity = 10
-ignore = ["E203", "W503"]
-exclude = [".git", "__pycache__", "venv", ".venv"]
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]

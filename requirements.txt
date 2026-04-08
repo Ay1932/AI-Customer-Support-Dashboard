@@ -10,3 +10,17 @@ seaborn==0.12.2
 jupyter==1.0.0
 requests==2.31.0
 beautifulsoup4==4.12.2
+
+# API dependencies
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic==2.5.0
+
+# Explainability dependencies (optional)
+shap==0.43.0
+lime==0.2.0.1
+
+# Testing dependencies
+pytest==7.4.0
+pytest-cov==4.1.0
+flake8==6.0.0
