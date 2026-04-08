@@ -1,5 +1,9 @@
 # AI-Based Customer Support Ticket Prioritization and Analytics Dashboard
 
+[![Python Version](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![CI](https://github.com/Ay1932/AI-Customer-Support-Dashboard/actions/workflows/ci.yml/badge.svg)](https://github.com/Ay1932/AI-Customer-Support-Dashboard/actions/workflows/ci.yml)
+
 This project implements an AI-powered system for customer support ticket classification, prioritization, and analytics visualization. It uses machine learning to automatically categorize tickets and predict their priority levels, helping support teams respond more efficiently.
 
 ## Features
@@ -135,11 +139,17 @@ The models are evaluated using:
 
 ## Contributing
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
+Please read our [Contributing Guide](CONTRIBUTING.md) for detailed information on how to contribute to this project.
+
+We welcome contributions of all kinds, including:
+- Bug reports and fixes
+- Feature requests and implementations
+- Documentation improvements
+- Code optimizations
+
+## Code of Conduct
+
+This project follows a [Code of Conduct](CODE_OF_CONDUCT.md) to ensure a welcoming environment for all contributors.
 
 ## License
 
