@@ -88,6 +88,28 @@ def prepare_features(df):
 
     return X
 
+def load_and_preprocess_data():
+    """Load data and return preprocessed texts with labels.
+    
+    Returns:
+        X: list of preprocessed text strings
+        y_category: numpy array of category labels
+        y_priority: numpy array of priority labels
+    """
+    df = pd.read_csv(DATA_DIR / 'sample_tickets.csv')
+
+    # Combine subject and description
+    df['text'] = df['Subject'] + ' ' + df['Description']
+
+    # Preprocess text
+    df['processed_text'] = df['text'].apply(preprocess_text)
+
+    X = df['processed_text'].tolist()
+    y_category = df['Ticket Type'].values
+    y_priority = df['Priority'].values
+
+    return X, y_category, y_priority
+
 if __name__ == "__main__":
     # Load data
     df = load_data(DATA_DIR / 'sample_tickets.csv')

@@ -12,20 +12,10 @@ requires-python = ">=3.8"
 authors = [
     {name = "AI Support Team"},
 ]
-maintainers = [
-    {name = "AI Support Team"},
-]
 keywords = ["machine-learning", "customer-support", "nlp", "streamlit", "dashboard"]
 classifiers = [
     "Development Status :: 4 - Beta",
-    "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
 dependencies = [
@@ -41,46 +31,8 @@ dependencies = [
 [project.urls]
 Homepage = "https://github.com/Ay1932/AI-Customer-Support-Dashboard"
 Repository = "https://github.com/Ay1932/AI-Customer-Support-Dashboard"
-Issues = "https://github.com/Ay1932/AI-Customer-Support-Dashboard/issues"
-Changelog = "https://github.com/Ay1932/AI-Customer-Support-Dashboard/blob/main/README.md"
-
-[project.scripts]
-customer-support-dashboard = "app:main"
-customer-support-api = "api:app"
-
-[tool.setuptools]
-packages = ["."]
 
 [tool.pytest.ini_options]
 minversion = "6.0"
-addopts = "-ra -q --cov=src --cov-report=html --cov-report=term-missing"
-testpaths = [
-    "tests",
-]
-python_files = "test_*.py"
-python_classes = "Test*"
-python_functions = "test_*"
-
-[tool.coverage.run]
-source = ["."]
-omit = [
-    "tests/*",
-    "venv/*",
-    "*/venv/*",
-    "*/__pycache__/*",
-    "__pycache__/*",
-]
-
-[tool.coverage.report]
-exclude_lines = [
-    "pragma: no cover",
-    "def __repr__",
-    "if self.debug:",
-    "if settings.DEBUG",
-    "raise AssertionError",
-    "raise NotImplementedError",
-    "if 0:",
-    "if __name__ == .__main__.:",
-    "class .*\\bProtocol\\):",
-    "@(abc\\.)?abstractmethod",
-]
+addopts = "-ra -q"
+testpaths = ["tests"]

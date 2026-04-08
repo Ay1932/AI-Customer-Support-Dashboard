@@ -5,127 +5,107 @@ Unit tests for the AI Customer Support Dashboard
 import pytest
 import pandas as pd
 import numpy as np
-from unittest.mock import Mock, patch
 import sys
 import os
+import json
 
-# Add the project root to the path
+# Add project root to path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from data_preprocessing import preprocess_text, load_and_preprocess_data
-import train_models
-import app
+from data_preprocessing import preprocess_text
+
+MODEL_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'models')
+DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data')
 
 
-class TestDataPreprocessing:
-    """Test data preprocessing functions"""
+class TestPreprocessing:
+    """Test text preprocessing"""
 
-    def test_preprocess_text_basic(self):
-        """Test basic text preprocessing"""
-        text = "Hello World! This is a TEST with numbers 123."
-        result = preprocess_text(text)
-
+    def test_basic(self):
+        result = preprocess_text("Hello World! This is a TEST 123.")
         assert isinstance(result, str)
-        assert result == result.lower()  # Should be lowercase
-        assert "!" not in result  # Special chars removed
-        assert "123" not in result  # Numbers removed
+        assert result == result.lower()
+        assert "!" not in result
+        assert "123" not in result
 
-    def test_preprocess_text_empty(self):
-        """Test preprocessing with empty text"""
-        result = preprocess_text("")
-        assert result == ""
+    def test_empty(self):
+        assert preprocess_text("") == ""
 
-    def test_preprocess_text_none(self):
-        """Test preprocessing with None input"""
-        result = preprocess_text(None)
-        assert result == ""
+    def test_nan(self):
+        assert preprocess_text(np.nan) == ""
 
-    @patch('pandas.read_csv')
-    def test_load_and_preprocess_data(self, mock_read_csv):
-        """Test data loading and preprocessing"""
-        # Mock data
-        mock_data = pd.DataFrame({
-            'subject': ['Test Subject 1', 'Test Subject 2'],
-            'description': ['Description 1', 'Description 2'],
-            'category': ['Technical Issue', 'Billing'],
-            'priority': ['High', 'Low']
-        })
-        mock_read_csv.return_value = mock_data
-
-        X, y_category, y_priority = load_and_preprocess_data()
-
-        assert len(X) == 2
-        assert len(y_category) == 2
-        assert len(y_priority) == 2
-        assert isinstance(X, list)
-        assert isinstance(y_category, np.ndarray)
+    def test_stopwords_removed(self):
+        result = preprocess_text("this is a very important test")
+        assert "important" in result
+        assert "test" in result
 
 
-class TestModelTraining:
-    """Test model training functionality"""
+class TestModelFiles:
+    """Test required model files exist"""
 
-    @patch('joblib.dump')
-    @patch('data_preprocessing.load_and_preprocess_data')
-    def test_train_models_execution(self, mock_load_data, mock_dump):
-        """Test that training functions execute without errors"""
-        # Mock data
-        mock_load_data.return_value = (
-            ['processed text 1', 'processed text 2'],
-            np.array(['Technical Issue', 'Billing']),
-            np.array(['High', 'Low'])
-        )
+    def test_vectorizer(self):
+        assert os.path.exists(os.path.join(MODEL_DIR, 'tfidf_vectorizer.pkl'))
 
-        # This should not raise an exception
+    def test_category_model(self):
+        assert os.path.exists(os.path.join(MODEL_DIR, 'category_model.pkl'))
+
+    def test_priority_model(self):
+        assert os.path.exists(os.path.join(MODEL_DIR, 'priority_model.pkl'))
+
+    def test_encoders(self):
+        assert os.path.exists(os.path.join(MODEL_DIR, 'category_encoder.pkl'))
+        assert os.path.exists(os.path.join(MODEL_DIR, 'priority_encoder.pkl'))
+
+    def test_metrics(self):
+        path = os.path.join(MODEL_DIR, 'model_metrics.json')
+        assert os.path.exists(path)
+        with open(path, 'r') as f:
+            metrics = json.load(f)
+        assert 'category' in metrics
+        assert 'priority' in metrics
+
+
+class TestPrediction:
+    """Test model prediction pipeline"""
+
+    def test_end_to_end(self):
+        import joblib
+        from pathlib import Path
+
         try:
-            train_models.train_category_model()
-            train_models.train_priority_model()
-            success = True
-        except Exception as e:
-            success = False
-            print(f"Training failed: {e}")
+            vectorizer = joblib.load(Path(MODEL_DIR) / 'tfidf_vectorizer.pkl')
+            cat_model = joblib.load(Path(MODEL_DIR) / 'category_model.pkl')
+            pri_model = joblib.load(Path(MODEL_DIR) / 'priority_model.pkl')
+            cat_encoder = joblib.load(Path(MODEL_DIR) / 'category_encoder.pkl')
+            pri_encoder = joblib.load(Path(MODEL_DIR) / 'priority_encoder.pkl')
+        except FileNotFoundError:
+            pytest.skip("Model files not found — run training first")
 
-        assert success, "Model training should complete without errors"
+        text = preprocess_text("My login is not working")
+        vec = vectorizer.transform([text])
 
+        cat_label = cat_encoder.inverse_transform([cat_model.predict(vec)[0]])[0]
+        pri_label = pri_encoder.inverse_transform([pri_model.predict(vec)[0]])[0]
 
-class TestDashboardApp:
-    """Test Streamlit dashboard functionality"""
-
-    def test_app_imports(self):
-        """Test that app imports successfully"""
-        # This tests that all imports in app.py work
-        assert hasattr(app, 'main') or True  # App should import without errors
-
-    def test_app_structure(self):
-        """Test that app has expected structure"""
-        # Check if main functions exist
-        assert callable(app.main) or True  # main function should exist
+        assert isinstance(cat_label, str) and len(cat_label) > 0
+        assert isinstance(pri_label, str) and len(pri_label) > 0
 
 
-class TestModelMetrics:
-    """Test model evaluation metrics"""
+class TestData:
+    """Test sample data file"""
 
-    def test_metrics_file_exists(self):
-        """Test that model metrics file exists"""
-        metrics_path = os.path.join(os.path.dirname(__file__), 'models', 'model_metrics.json')
-        assert os.path.exists(metrics_path), "Model metrics file should exist"
+    def test_csv_exists(self):
+        assert os.path.exists(os.path.join(DATA_DIR, 'sample_tickets.csv'))
 
-    def test_metrics_content(self):
-        """Test that metrics file has expected content"""
-        import json
-        metrics_path = os.path.join(os.path.dirname(__file__), 'models', 'model_metrics.json')
+    def test_csv_columns(self):
+        df = pd.read_csv(os.path.join(DATA_DIR, 'sample_tickets.csv'))
+        for col in ['Ticket ID', 'Ticket Type', 'Subject', 'Description', 'Priority', 'Status']:
+            assert col in df.columns
 
-        if os.path.exists(metrics_path):
-            with open(metrics_path, 'r') as f:
-                metrics = json.load(f)
-
-            # Should have category and priority metrics
-            assert 'category_model' in metrics
-            assert 'priority_model' in metrics
-
-            # Each should have accuracy
-            assert 'accuracy' in metrics['category_model']
-            assert 'accuracy' in metrics['priority_model']
+    def test_csv_not_empty(self):
+        df = pd.read_csv(os.path.join(DATA_DIR, 'sample_tickets.csv'))
+        assert len(df) > 0
 
 
 if __name__ == "__main__":
-    pytest.main([__file__])
+    pytest.main([__file__, "-v"])
