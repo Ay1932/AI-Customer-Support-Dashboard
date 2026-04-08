@@ -1,7 +1,7 @@
 # 🎫 AI Customer Support Dashboard
 
 An AI-powered dashboard for customer support ticket classification and analytics. Built with **Streamlit**, **scikit-learn**, and **FastAPI**.
-
+Streamlit: https://ai-customer-support-dashboard.streamlit.app/
 The system uses machine learning (Random Forest + Logistic Regression) to automatically predict ticket **category** and **priority** from the ticket text.
 
 ---
