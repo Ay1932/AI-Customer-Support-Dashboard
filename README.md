@@ -99,6 +99,11 @@ streamlit run app.py
 # Or use Make: make run
 ```
 
+4. **View Feature Demo** (Optional):
+```bash
+streamlit run demo.py
+```
+
 ### For Advanced Features
 
 **Train Advanced Models with Hyperparameter Tuning**:
